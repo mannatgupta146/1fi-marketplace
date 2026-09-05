@@ -1,0 +1,58 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+  id          String           @id @default(uuid())
+  slug        String           @unique
+  name        String
+  brand       String
+  category    String
+  description String
+  rating      Float            @default(4.8)
+  reviewCount Int              @default(142)
+  basePrice   Float
+  baseMrp     Float
+  imageUrl    String
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  variants    ProductVariant[]
+  emiPlans    EmiPlan[]
+}
+
+model ProductVariant {
+  id        String   @id @default(uuid())
+  productId String
+  colorName String
+  colorHex  String
+  storage   String
+  price     Float
+  mrp       Float
+  imageUrl  String
+  stock     Int      @default(15)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model EmiPlan {
+  id                      String   @id @default(uuid())
+  productId               String
+  tenureMonths            Int
+  monthlyAmount           Float
+  interestRate            Float    @default(0) // e.g. 0% or 10.5%
+  cashbackAmount          Float    @default(0)
+  mutualFundBacked        Boolean  @default(true)
+  mfYieldSavings          Float    @default(0) // Mutual fund yield return contribution
+  downpayment             Float    @default(0)
+  badgeLabel              String?  // e.g., "0% No-Cost EMI", "Best Savings", "Popular Plan"
+  isPopular               Boolean  @default(false)
+  description             String?
+  createdAt               DateTime @default(now())
+  product                 Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
