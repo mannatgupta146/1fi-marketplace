@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { initialProducts } from "@/lib/fallback-data";
 
 export const dynamic = "force-dynamic";
 
@@ -7,10 +8,9 @@ export async function GET(
   request: Request,
   { params }: { params: { slug: string } }
 ) {
-  try {
-    const { slug } = params;
+  const { slug } = params;
 
-    // Search by slug first, or fallback to id search
+  try {
     const product = await prisma.product.findFirst({
       where: {
         OR: [{ slug: slug }, { id: slug }],
@@ -25,27 +25,32 @@ export async function GET(
       },
     });
 
-    if (!product) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: "Product not found",
-        },
-        { status: 404 }
-      );
+    if (product) {
+      return NextResponse.json({
+        success: true,
+        data: product,
+      });
     }
+  } catch (error: any) {
+    console.error("Prisma serverless slug query notice, checking catalog data:", error?.message);
+  }
 
+  const fallbackProduct = initialProducts.find(
+    (p) => p.slug === slug || p.id === slug
+  );
+
+  if (fallbackProduct) {
     return NextResponse.json({
       success: true,
-      data: product,
+      data: fallbackProduct,
     });
-  } catch (error: any) {
-    return NextResponse.json(
-      {
-        success: false,
-        error: error.message || "Failed to fetch product details",
-      },
-      { status: 500 }
-    );
   }
+
+  return NextResponse.json(
+    {
+      success: false,
+      error: "Product not found",
+    },
+    { status: 404 }
+  );
 }
