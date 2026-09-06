@@ -152,46 +152,46 @@ export const initialProducts = [
     reviewCount: 245,
     basePrice: 124999,
     baseMrp: 139999,
-    imageUrl: "/products/s24/titanium-violet/violet1.png",
+    imageUrl: "/products/s24/blue-silver/s24bluesilver1.png",
     variants: [
       {
         id: "v2-1",
-        colorName: "Titanium Violet",
-        colorHex: "#5B556E",
+        colorName: "Blue Silver",
+        colorHex: "#95A5B5",
         storage: "256 GB",
         price: 124999,
         mrp: 139999,
-        imageUrl: "/products/s24/titanium-violet/violet1.png",
+        imageUrl: "/products/s24/blue-silver/s24bluesilver1.png",
         stock: 18
       },
       {
         id: "v2-2",
-        colorName: "Titanium Gray",
+        colorName: "Gray",
         colorHex: "#777777",
         storage: "256 GB",
         price: 124999,
         mrp: 139999,
-        imageUrl: "/products/s24/titanium-gray/gray1.png",
+        imageUrl: "/products/s24/gray/s24gray1.png",
         stock: 14
       },
       {
         id: "v2-3",
-        colorName: "Titanium Black",
-        colorHex: "#2B2B2B",
+        colorName: "White Silver",
+        colorHex: "#E8ECEF",
         storage: "256 GB",
         price: 124999,
         mrp: 139999,
-        imageUrl: "/products/s24/titanium-black/black1.png",
+        imageUrl: "/products/s24/white-silver/s24whitesilver1.png",
         stock: 22
       },
       {
         id: "v2-4",
-        colorName: "Titanium Violet",
-        colorHex: "#5B556E",
+        colorName: "Gray",
+        colorHex: "#777777",
         storage: "512 GB",
         price: 139999,
         mrp: 154999,
-        imageUrl: "/products/s24/titanium-violet/violet1.png",
+        imageUrl: "/products/s24/gray/s24gray1.png",
         stock: 9
       }
     ],
@@ -248,36 +248,36 @@ export const initialProducts = [
     reviewCount: 189,
     basePrice: 229900,
     baseMrp: 249900,
-    imageUrl: "/products/macbook/space-black/blackmacbook1.png",
+    imageUrl: "/products/macbook/midnight-black/m5midnightblack1.png",
     variants: [
       {
         id: "v3-1",
-        colorName: "Space Black",
+        colorName: "Midnight Black",
         colorHex: "#222325",
         storage: "512 GB",
         price: 229900,
         mrp: 249900,
-        imageUrl: "/products/macbook/space-black/blackmacbook1.png",
+        imageUrl: "/products/macbook/midnight-black/m5midnightblack1.png",
         stock: 10
       },
       {
         id: "v3-2",
-        colorName: "Silver",
-        colorHex: "#E3E4E5",
+        colorName: "Sky Blue",
+        colorHex: "#87CEEB",
         storage: "512 GB",
         price: 229900,
         mrp: 249900,
-        imageUrl: "/products/macbook/silver/silvermacbook1.png",
+        imageUrl: "/products/macbook/sky-blue/m5skyblue1.png",
         stock: 8
       },
       {
         id: "v3-3",
-        colorName: "Space Black",
+        colorName: "Midnight Black",
         colorHex: "#222325",
         storage: "1 TB",
         price: 269900,
         mrp: 289900,
-        imageUrl: "/products/macbook/space-black/blackmacbook1.png",
+        imageUrl: "/products/macbook/midnight-black/m5midnightblack1.png",
         stock: 5
       }
     ],
