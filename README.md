@@ -3,9 +3,15 @@
 > **Full-Stack Implementation for the 1Fi SDE Intern Assignment**  
 > A Next.js 14 web application extending the **1Fi Financial Marketplace**. Enables users to explore flagship electronics (smartphones, laptops) and purchase them on flexible 0% No-Cost EMI plans backed by their Mutual Fund investment portfolio.
 
+### 🌐 Live Production Deployment
+- **Live Vercel Application**: [https://1fi-marketplace-nu.vercel.app](https://1fi-marketplace-nu.vercel.app)
+- **Production Database**: Neon Serverless PostgreSQL (`ep-quiet-cell-au2j0yo5.us-east-1.aws.neon.tech`)
+- **API Status**: Live `/api/products` and `/api/checkout` powered by Prisma ORM & Neon Postgres.
+
 ---
 
 ## 🧭 Quick Navigation (Table of Contents)
+- [🌐 Live Production Deployment](#-live-production-deployment)
 - [🖥️ Key Application Showcase](#️-key-application-showcase)
 - [⚡ Architectural Highlights & Core Features](#-architectural-highlights--core-features)
   - [1. 1Fi Storefront & Navigation Architecture](#1-1fi-storefront--navigation-architecture)
@@ -14,9 +20,6 @@
 - [🗄️ Database Schema Overview](#%EF%B8%8F-database-schema-overview)
   - [Models & Field Specifications](#models--field-specifications)
 - [🔗 API Reference & Endpoints](#-api-reference--endpoints)
-  - [1. Fetch All Products](#1-fetch-all-products)
-  - [2. Fetch Single Product Details](#2-fetch-single-product-details)
-  - [3. Process Checkout Order](#3-process-checkout-order)
 - [📦 Setup & Local Execution Guide](#-setup--local-execution-guide)
 - [📋 Submission Checklist & Assignment Compliance](#-submission-checklist--assignment-compliance)
 
