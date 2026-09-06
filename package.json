@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "clean": "rm -rf .next",
-    "build": "prisma generate && prisma db push && next build",
+    "build": "prisma generate && prisma db push && npm run seed && next build",
     "start": "next start",
     "lint": "next lint",
     "seed": "node --loader ts-node/register prisma/seed.ts"
