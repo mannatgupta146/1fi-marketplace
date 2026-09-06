@@ -5,8 +5,8 @@
 
 ### 🌐 Live Production Deployment
 - **Live Vercel Application**: [https://1fi-marketplace-nu.vercel.app](https://1fi-marketplace-nu.vercel.app)
-- **Production Database**: Neon Serverless PostgreSQL (`ep-quiet-cell-au2j0yo5.us-east-1.aws.neon.tech`)
-- **API Status**: Live `/api/products` and `/api/checkout` powered by Prisma ORM & Neon Postgres.
+- **Production Database**: Neon Serverless PostgreSQL
+- **API Endpoints**: `/api/products` & `/api/checkout` (Powered by Prisma ORM & Neon Postgres)
 
 ---
 
