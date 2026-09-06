@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Navbar from "@/components/Navbar";
 import ShopTabs from "@/components/ShopTabs";
 import ProductCard, { Product } from "@/components/ProductCard";
 import { Search, ShoppingBag, AlertCircle, RefreshCw, ChevronDown } from "lucide-react";
@@ -63,6 +64,7 @@ export default function ShopPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      <Navbar />
       <ShopTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
@@ -76,8 +78,8 @@ export default function ShopPage() {
               activeTab === "top-brands"
                 ? "Search online stores..."
                 : activeTab === "nearby-stores"
-                ? "Search stores..."
-                : "Search smartphones, laptops on EMI..."
+                  ? "Search stores..."
+                  : "Search smartphones, laptops on EMI..."
             }
             className="w-full bg-white text-slate-800 placeholder:text-slate-400 text-sm font-medium rounded-full pl-11 pr-4 py-3.5 border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500 transition-all"
           />

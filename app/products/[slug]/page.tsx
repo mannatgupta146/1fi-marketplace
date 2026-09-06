@@ -27,6 +27,79 @@ import ProductCard, { Product, ProductVariant, EmiPlan } from "@/components/Prod
 import EmiPlanCard from "@/components/EmiPlanCard";
 import CheckoutModal from "@/components/CheckoutModal";
 
+function getVariantImages(primaryImageUrl: string): string[] {
+  if (!primaryImageUrl) return [];
+
+  // MacBook Midnight Black
+  if (primaryImageUrl.includes("/macbook/midnight-black/")) {
+    return [
+      "/products/macbook/midnight-black/m5midnightblack1.png",
+      "/products/macbook/midnight-black/m5midnightblack2.png",
+      "/products/macbook/midnight-black/m5midnightblack3.png",
+      "/products/macbook/midnight-black/m5midnightblack4.png",
+    ];
+  }
+  // MacBook Sky Blue
+  if (primaryImageUrl.includes("/macbook/sky-blue/")) {
+    return [
+      "/products/macbook/sky-blue/m5skyblue1.png",
+      "/products/macbook/sky-blue/m5skyblue2.png",
+      "/products/macbook/sky-blue/m5skyblue3.png",
+      "/products/macbook/sky-blue/m5skyblue4.png",
+    ];
+  }
+  // iPhone Cosmic Orange
+  if (primaryImageUrl.includes("/iphone/cosmic-orange/")) {
+    return [
+      "/products/iphone/cosmic-orange/orangeiphone1.png",
+      "/products/iphone/cosmic-orange/orangeiphone2.png",
+      "/products/iphone/cosmic-orange/orangeiphone3.png",
+    ];
+  }
+  // iPhone White Titanium
+  if (primaryImageUrl.includes("/iphone/white-titanium/")) {
+    return [
+      "/products/iphone/white-titanium/whiteiphone1.png",
+      "/products/iphone/white-titanium/whiteiphone2.png",
+      "/products/iphone/white-titanium/whiteiphone3.png",
+    ];
+  }
+  // iPhone Blue Titanium
+  if (primaryImageUrl.includes("/iphone/blue-titanium/")) {
+    return [
+      "/products/iphone/blue-titanium/blueiphone1.png",
+      "/products/iphone/blue-titanium/blueiphone2.png",
+      "/products/iphone/blue-titanium/blueiphone3.png",
+    ];
+  }
+  // S24 Blue Silver
+  if (primaryImageUrl.includes("/s24/blue-silver/")) {
+    return [
+      "/products/s24/blue-silver/s24bluesilver1.png",
+      "/products/s24/blue-silver/s24bluesilver2.png",
+      "/products/s24/blue-silver/s24bluesilver3.png",
+    ];
+  }
+  // S24 Gray
+  if (primaryImageUrl.includes("/s24/gray/")) {
+    return [
+      "/products/s24/gray/s24gray1.png",
+      "/products/s24/gray/s24gray2.png",
+      "/products/s24/gray/s24gray3.png",
+    ];
+  }
+  // S24 White Silver
+  if (primaryImageUrl.includes("/s24/white-silver/")) {
+    return [
+      "/products/s24/white-silver/s24whitesilver1.png",
+      "/products/s24/white-silver/s24whitesilver2.png",
+      "/products/s24/white-silver/s24whitesilver3.png",
+    ];
+  }
+
+  return [primaryImageUrl];
+}
+
 export default function ProductDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
@@ -94,6 +167,7 @@ export default function ProductDetailPage() {
     setSelectedColor(matched.colorName);
     setSelectedStorage(matched.storage);
     setSelectedVariant(matched);
+    setSelectedImageIndex(0);
   };
 
   if (loading) {
@@ -132,6 +206,9 @@ export default function ProductDetailPage() {
   const activeColorVariant =
     allColors.find((c) => c.colorName === selectedColor) || selectedVariant;
 
+  const variantImages = getVariantImages(selectedVariant.imageUrl || product.imageUrl);
+  const activeMainImage = variantImages[selectedImageIndex] || variantImages[0] || selectedVariant.imageUrl;
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 pb-10">
       {/* Breadcrumb Header */}
@@ -158,25 +235,25 @@ export default function ProductDetailPage() {
           {/* Left Side: Product Gallery & Variant Selectors (Sticky on Desktop) */}
           <div className="lg:col-span-6 space-y-6 lg:sticky lg:top-24 self-start">
             <div className="flex flex-col-reverse sm:flex-row gap-3 sm:gap-4">
-              {/* Color Variant Selector Thumbnails */}
+              {/* Selected Variant's Multi-Angle Thumbnails */}
               <div className="flex flex-row sm:flex-col space-x-2.5 sm:space-x-0 sm:space-y-2.5 overflow-x-auto sm:overflow-y-auto max-h-none sm:max-h-[440px] p-1.5 no-scrollbar justify-start">
-                {allColors.map((col) => {
-                  const isSelected = selectedColor === col.colorName;
+                {variantImages.map((imgUrl, idx) => {
+                  const isSelected = selectedImageIndex === idx;
                   return (
                     <button
-                      key={col.colorName}
-                      onClick={() => handleVariantChange(col.colorName, selectedStorage)}
-                      title={`${col.colorName}`}
+                      key={idx}
+                      onClick={() => setSelectedImageIndex(idx)}
+                      title={`${selectedVariant.colorName} view ${idx + 1}`}
                       className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl p-1 bg-white transition-all duration-200 flex-shrink-0 flex items-center justify-center border-2 ${
                         isSelected
                           ? "border-purple-600 shadow-md bg-purple-50/30 scale-105"
-                          : "border-slate-200/90 hover:border-slate-300 opacity-80 hover:opacity-100"
+                          : "border-slate-200/90 hover:border-slate-300 opacity-70 hover:opacity-100"
                       }`}
                     >
-                      <div className="w-full h-full rounded-xl overflow-hidden flex items-center justify-center bg-slate-50/40">
+                      <div className="w-full h-full rounded-xl overflow-hidden flex items-center justify-center bg-white">
                         <img
-                          src={col.imageUrl}
-                          alt={col.colorName}
+                          src={imgUrl}
+                          alt={`${selectedVariant.colorName} view ${idx + 1}`}
                           className="w-full h-full object-contain p-0.5 transition-transform duration-200 group-hover:scale-105"
                         />
                       </div>
@@ -186,14 +263,14 @@ export default function ProductDetailPage() {
               </div>
 
               {/* Main Showcase Image */}
-              <div className="w-full sm:flex-1 relative h-[320px] min-h-[320px] sm:h-[440px] bg-gradient-to-b from-slate-50/80 via-white to-slate-100/30 rounded-2xl border border-slate-200/90 p-4 flex items-center justify-center shadow-xs overflow-hidden group">
+              <div className="w-full sm:flex-1 relative h-[320px] min-h-[320px] sm:h-[440px] bg-white rounded-2xl border border-slate-200/90 p-3 sm:p-4 flex items-center justify-center shadow-2xs overflow-hidden group">
                 <Image
-                  src={selectedVariant.imageUrl || product.imageUrl}
+                  src={activeMainImage}
                   alt={product.name}
                   fill
                   priority
                   unoptimized
-                  className="object-contain p-4 sm:p-6 drop-shadow-md transition-transform duration-300 group-hover:scale-105"
+                  className="object-contain p-2 sm:p-4 transition-transform duration-300 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
 

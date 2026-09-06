@@ -57,7 +57,7 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/products/${product.slug}`}
-      className="group relative bg-white rounded-2xl p-4 border border-slate-200/90 hover:border-purple-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
+      className="group relative bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/90 hover:border-purple-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
     >
       {/* Animated Purple Line on Hover */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-transparent overflow-hidden">
@@ -66,13 +66,22 @@ export default function ProductCard({ product }: { product: Product }) {
 
       <div>
         {/* Image Container */}
-        <div className="relative w-full h-52 bg-slate-50/80 rounded-xl p-4 flex items-center justify-center overflow-hidden mb-4 border border-slate-100 group-hover:bg-purple-50/20 transition-colors">
-          <div className="absolute top-2.5 right-2.5 z-10 bg-white/90 backdrop-blur-md px-2 py-0.5 rounded-full border border-slate-200/70 text-slate-800 text-[11px] font-semibold flex items-center gap-1 shadow-2xs">
-            <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+        <div className="relative w-full h-44 sm:h-48 bg-white rounded-xl p-2.5 flex items-center justify-center overflow-hidden mb-3 border border-slate-100 group-hover:bg-purple-50/10 transition-colors">
+          
+          {/* Top Left: No-Cost EMI Badge */}
+          {featuredEmi && (
+            <div className="absolute top-2 left-2 z-10 bg-purple-700 text-white px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-extrabold uppercase tracking-tight shadow-xs">
+              0% Interest EMI
+            </div>
+          )}
+
+          {/* Top Right: Rating */}
+          <div className="absolute top-2 right-2 z-10 bg-white/90 backdrop-blur-md px-1.5 py-0.5 rounded-full border border-slate-200/70 text-slate-800 text-[10px] font-bold flex items-center gap-0.5 shadow-2xs">
+            <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
             <span>{product.rating}</span>
           </div>
 
-          <div className="relative w-full h-44 transition-transform duration-300 group-hover:scale-105">
+          <div className="relative w-full h-36 sm:h-40 transition-transform duration-300 group-hover:scale-105">
             <Image
               src={product.imageUrl}
               alt={product.name}
@@ -85,67 +94,59 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
 
         {/* Content */}
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between text-[11px] sm:text-xs">
-            <span className="font-extrabold text-purple-700 uppercase tracking-wider text-[10px] sm:text-[11px]">
+        <div className="space-y-1">
+          <div className="flex items-center justify-between text-[10px] sm:text-[11px]">
+            <span className="font-extrabold text-purple-700 uppercase tracking-wider">
               {product.brand}
             </span>
-            <span className="text-slate-400 font-medium text-[11px] sm:text-xs">
+            <span className="text-slate-400 font-medium">
               {product.variants.length} {product.variants.length === 1 ? "option" : "options"}
             </span>
           </div>
 
-          <h3 className="font-bold text-base sm:text-lg text-slate-900 group-hover:text-purple-700 transition-colors line-clamp-1">
+          <h3 className="font-bold text-sm sm:text-base text-slate-900 group-hover:text-purple-700 transition-colors line-clamp-1">
             {product.name}
           </h3>
 
-          <p className="text-xs sm:text-sm text-slate-500 line-clamp-2 leading-relaxed">
+          <p className="text-[11px] sm:text-xs text-slate-500 line-clamp-2 leading-relaxed">
             {product.description}
           </p>
         </div>
 
         {/* Pricing & EMI info */}
-        <div className="pt-3 space-y-2">
-          <div className="flex items-baseline space-x-2">
-            <span className="text-xl sm:text-2xl font-black text-slate-900">
+        <div className="pt-2.5 space-y-1">
+          <div className="flex items-baseline space-x-1.5 flex-wrap gap-y-0.5">
+            <span className="text-lg sm:text-xl font-black text-slate-900">
               ₹{product.basePrice.toLocaleString("en-IN")}
             </span>
-            <span className="text-xs sm:text-sm text-slate-400 line-through font-medium">
+            <span className="text-xs text-slate-400 line-through font-medium">
               ₹{product.baseMrp.toLocaleString("en-IN")}
             </span>
             {discountPercent > 0 && (
-              <span className="text-[10px] sm:text-xs font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-full border border-emerald-200/50">
+              <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-full border border-emerald-200/50">
                 {discountPercent}% OFF
               </span>
             )}
           </div>
 
           {featuredEmi && (
-            <div className="bg-purple-50/80 border border-purple-100/90 rounded-xl p-2.5 sm:p-3 flex items-center justify-between">
-              <div>
-                <span className="text-[10px] sm:text-[11px] text-purple-700 font-extrabold block uppercase tracking-wider">
-                  No-Cost EMI
-                </span>
-                <span className="text-sm sm:text-base font-black text-slate-900">
-                  ₹{featuredEmi.monthlyAmount.toLocaleString("en-IN")}
-                  <span className="text-xs sm:text-sm text-slate-500 font-normal">/mo</span>
-                </span>
-              </div>
-              <span className="text-[10px] sm:text-xs bg-purple-700 text-white font-extrabold px-2.5 py-1 rounded-full shadow-2xs">
-                {featuredEmi.interestRate === 0 ? "0% Interest" : `${featuredEmi.interestRate}% Int`}
-              </span>
+            <div className="text-xs font-semibold text-slate-700 flex items-center space-x-1 pt-0.5">
+              <span className="text-purple-700 font-extrabold">EMI:</span>
+              <span className="font-bold text-slate-900">₹{featuredEmi.monthlyAmount.toLocaleString("en-IN")}/mo</span>
+              <span className="text-[10px] font-bold text-purple-700 bg-purple-50 px-1.5 py-0.2 rounded border border-purple-100">No-Cost</span>
             </div>
           )}
         </div>
       </div>
 
       {/* Button */}
-      <div className="pt-4">
-        <div className="w-full bg-purple-600 group-hover:bg-purple-700 text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-xl flex items-center justify-center space-x-2 transition-all shadow-sm shadow-purple-600/20">
+      <div className="pt-3">
+        <div className="w-full bg-purple-600 group-hover:bg-purple-700 text-white font-bold text-xs py-2.5 px-3.5 rounded-xl flex items-center justify-center space-x-1.5 transition-all shadow-sm shadow-purple-600/20">
           <span>Explore EMI Plans</span>
-          <ArrowRight className="w-4 h-4" />
+          <ArrowRight className="w-3.5 h-3.5" />
         </div>
       </div>
     </Link>
   );
 }
+

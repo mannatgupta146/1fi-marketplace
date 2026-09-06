@@ -38,23 +38,29 @@ export default function EmiDuesPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 pb-24">
-      {/* Top Bar */}
-      <div className="bg-white border-b border-slate-200/80 sticky top-0 z-30">
-        <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
-          <Link
-            href="/"
-            className="text-xs font-bold text-slate-500 hover:text-purple-600 flex items-center gap-1 transition-colors"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            <span>Marketplace</span>
-          </Link>
-          <span className="text-[11px] font-bold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-100">
-            {activeOrders.length} Active {activeOrders.length === 1 ? "Plan" : "Plans"}
-          </span>
+      {/* Page Header */}
+      <div className="bg-white border-b border-slate-200/80 sticky top-0 z-30 shadow-2xs">
+        <div className="max-w-xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <Link
+              href="/"
+              className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </Link>
+            <div>
+              <h1 className="font-extrabold text-base sm:text-lg text-slate-900 leading-tight">
+                EMI Dues & Loans
+              </h1>
+              <p className="text-[11px] text-slate-500 font-medium">
+                Track active 1Fi credit lines & monthly payments
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-4 py-5 space-y-4">
+      <div className="max-w-xl mx-auto px-4 py-5 space-y-4">
         {/* Page Title & Total Dues Header */}
         <div className="flex items-end justify-between">
           <div>

@@ -36,11 +36,10 @@ export default function ShopTabs({ activeTab, setActiveTab }: ShopTabsProps) {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 py-2.5 px-1.5 sm:px-3 rounded-full text-[11px] sm:text-xs font-bold transition-all duration-300 flex items-center justify-center space-x-1 whitespace-nowrap relative ${
-                isActive
+              className={`flex-1 py-2.5 px-1.5 sm:px-3 rounded-full text-[11px] sm:text-xs font-bold transition-all duration-300 flex items-center justify-center space-x-1 whitespace-nowrap relative ${isActive
                   ? "bg-white text-purple-700 shadow-md ring-1 ring-purple-500/20"
                   : "text-slate-500 hover:text-purple-600 hover:bg-purple-50/50"
-              }`}
+                }`}
             >
               <span className="whitespace-nowrap truncate">{tab.label}</span>
               {tab.isNew && (
