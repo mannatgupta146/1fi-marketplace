@@ -7,7 +7,11 @@ export const metadata: Metadata = {
   title: "1Fi Marketplace - Shop Today, Pay Later using Mutual Funds",
   description: "Shop smartphones & electronics on 0% No-Cost EMI backed by your Mutual Funds portfolio on 1Fi Marketplace.",
   icons: {
-    icon: "/logo.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/logo.png", type: "image/png" },
+    ],
+    shortcut: "/logo.png",
     apple: "/logo.png",
   },
 };
