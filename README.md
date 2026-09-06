@@ -67,7 +67,7 @@
 | :--- | :--- |
 | **Framework** | Next.js 14 (App Router), React 18, TypeScript |
 | **Styling & UI** | Tailwind CSS, Lucide Icons, Glassmorphism & Custom CSS Keyframe Animations |
-| **Database & ORM** | SQLite / PostgreSQL with Prisma ORM |
+| **Database & ORM** | Neon Serverless PostgreSQL with Prisma ORM |
 | **API Architecture** | Node.js Serverless API Routes (`/api/products`, `/api/checkout`) |
 | **Code Quality** | Strictly Typed (`tsc --noEmit` verified — 0 errors) |
 
